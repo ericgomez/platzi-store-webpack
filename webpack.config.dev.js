@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -50,7 +51,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/, // 👈 Extenciones de los archivos que voy a usar
-        type: 'asset/resource', // 👈 Indicamos el tipo
+        type: 'asset', // 👈 Indicamos el tipo
       },
     ],
   },
@@ -67,6 +68,12 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'assets/[name].css',
+    }),
+    new ImageMinimizerPlugin({
+      // 👈 New Plugin
+      minimizerOptions: {
+        plugins: [['optipng', { optimizationLevel: 5 }]], // indicamos el nombre de recurso y el nivel de optimizacion
+      },
     }),
   ],
 };

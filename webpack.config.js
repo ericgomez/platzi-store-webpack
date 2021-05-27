@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CSSMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -53,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/, // 👈 Extenciones de los archivos que voy a usar
-        type: 'asset/resource', // 👈 Indicamos el tipo
+        type: 'asset', // 👈 Indicamos el tipo
       },
     ],
   },
@@ -69,6 +70,12 @@ module.exports = {
       filename: 'assets/[name].css',
     }),
     new CleanWebpackPlugin(), // 👈 Aegramos un nuevo Plugin
+    new ImageMinimizerPlugin({
+      // 👈 New Plugin
+      minimizerOptions: {
+        plugins: [['optipng', { optimizationLevel: 5 }]], // indicamos el nombre de recurso y el nivel de optimizacion
+      },
+    }),
   ],
   optimization: {
     // 👈 Implementamos y configuramos la optimización
