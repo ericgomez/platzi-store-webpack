@@ -13,7 +13,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.tsx', '.js', '.jsx'],
     // Añadimos alias - Los Alias nos permiten otorgar nombres paths específicos evitando los paths largos
     alias: {
       '@components': path.resolve(__dirname, 'src/components/'),
@@ -55,6 +55,11 @@ module.exports = {
       {
         test: /\.(png|jpg)$/, // 👈 Extenciones de los archivos que voy a usar
         type: 'asset', // 👈 Indicamos el tipo
+      },
+      {
+        test: /\.tsx?$/, // 👈 Extenciones de los archivos que voy a usar
+        use: 'ts-loader', // 👈 Indicamos la libreria a utilizar
+        exclude: '/node_modules/',
       },
     ],
   },
