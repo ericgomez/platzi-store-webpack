@@ -4,6 +4,7 @@ import Home from '../containers/Home';
 import Checkout from '../containers/Checkout';
 import Layout from '../components/Layout';
 import NotFound from '../containers/NotFound';
+import AppContext from '../context/AppContext';
 import useInitialState from '../hooks/useInitialState';
 
 const App = () => {
@@ -13,15 +14,18 @@ const App = () => {
   return (
     <>
       {isEmpty > 0 ? ( // Si el compoenente no es vacio, mostramos la informacion
-        <BrowserRouter>
-          <Layout>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/checkout" component={Checkout} />
-              <Route component={NotFound} />
-            </Switch>
-          </Layout>
-        </BrowserRouter>
+        // Agregamos el Contexto y le pasamos el initialState
+        <AppContext.Provider value={initialState}>
+          <BrowserRouter>
+            <Layout>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/checkout" component={Checkout} />
+                <Route component={NotFound} />
+              </Switch>
+            </Layout>
+          </BrowserRouter>
+        </AppContext.Provider>
       ) : (
         // Si el compoenente es vacio, mostramos un h1 con un texto
         <h1>Loading...</h1>
