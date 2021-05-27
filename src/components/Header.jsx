@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../styles/components/Header.styl';
+import logo from '@assets/logo-gndx.png';
 
 const Header = props => (
   <div className="Header">
     <h1 className="Header-title">
       <Link to="/">
+        <img src={logo} alt="logo" width="32" />
         Platzi Store
       </Link>
     </h1>
@@ -14,9 +16,7 @@ const Header = props => (
       <Link to="/checkout">
         <i className="fas fa-shopping-basket" />
       </Link>
-      {props.cart.length > 0 &&
-        <div className="Header-alert">{props.cart.length}</div>
-      }
+      {props.cart.length > 0 && <div className="Header-alert">{props.cart.length}</div>}
     </div>
   </div>
 );

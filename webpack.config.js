@@ -21,6 +21,7 @@ module.exports = {
       '@hooks': path.resolve(__dirname, 'src/hooks/'),
       '@routes': path.resolve(__dirname, 'src/routes/'),
       '@styles': path.resolve(__dirname, 'src/styles'),
+      '@assets': path.resolve(__dirname, 'src/assets'), // 👈 New Alias
     },
   },
   module: {
@@ -49,6 +50,10 @@ module.exports = {
           'css-loader',
           'stylus-loader',
         ],
+      },
+      {
+        test: /\.(png|jpg)$/, // 👈 Extenciones de los archivos que voy a usar
+        type: 'asset/resource', // 👈 Indicamos el tipo
       },
     ],
   },
