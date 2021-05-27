@@ -10,6 +10,15 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    // Añadimos alias - Los Alias nos permiten otorgar nombres paths específicos evitando los paths largos
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@containers': path.resolve(__dirname, 'src/containers/'),
+      '@context': path.resolve(__dirname, 'src/context/'),
+      '@hooks': path.resolve(__dirname, 'src/hooks/'),
+      '@routes': path.resolve(__dirname, 'src/routes/'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+    },
   },
   module: {
     rules: [
