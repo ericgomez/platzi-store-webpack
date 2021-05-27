@@ -6,6 +6,7 @@ import Layout from '@components/Layout';
 import NotFound from '@containers/NotFound';
 import AppContext from '@context/AppContext';
 import useInitialState from '@hooks/useInitialState';
+import { hot } from 'react-hot-loader/root';
 
 const App = () => {
   const initialState = useInitialState(); // Inizializamos useInitialState
@@ -34,4 +35,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default hot(App); // 👈 Exportando con el metodo Hot Reload

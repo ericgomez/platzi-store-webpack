@@ -10,7 +10,7 @@ const Header = props => (
     <h1 className="Header-title">
       <Link to="/">
         <img src={logo} alt="logo" width="32" />
-        <Title title="Platzi Store" />
+        <Title title="Platzi Store V2" />
       </Link>
     </h1>
     <div className="Header-checkout">

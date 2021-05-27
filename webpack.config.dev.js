@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['react-hot-loader/patch', './src/index.js'], // En este caso agregamos dos puntos de entrada para este caso solo para Desarrollo
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -65,6 +65,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'), // 👈 Inidicamos la direccion de nuestro proyecto
     compress: true, // 👈 Indicamos que si se realizara compresion
     port: 3005, // 👈 Puerto
+    hot: true, // 👈 Activamos el Hot Reload
   },
   plugins: [
     new HtmlWebPackPlugin({
