@@ -7,10 +7,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    home: './src/index.js', // Entrada para Home
+    header: './src/Header/index.js', // Entrada para el Header
+  }, // En este caso agregamos dos puntos de entrada
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js', // Nombre de los elementos o pequeñas piezas de codigo
   },
   resolve: {
     extensions: ['.tsx', '.js', '.jsx'],
@@ -86,5 +90,32 @@ module.exports = {
     // 👈 Implementamos y configuramos la optimización
     minimize: true,
     minimizer: [new CSSMinimizerPlugin(), new TerserPlugin()],
+    splitChunks: {
+      chunks: 'all',
+      // 👈 Implementamos cacheGroups para poder separar en diferentes grupos
+      cacheGroups: {
+        default: false, // indicamos que no utilizaremos los valores por defecto
+        // commons: 👈 Elegimos los elementos comunes de toda la aplicacion de los cuales seran: react y react-dom
+        commons: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          chunks: 'all',
+          name: 'commons', //Como se llamara
+          filename: 'assets/common.[chunkhash].js', // Nombre singular con un hash
+          reuseExistingChunk: true, // Reutilizamos si existe
+          enforce: true,
+          priority: 20,
+        },
+        // vendors: 👈 Agregamos todas las demas librerias y recursos que utilizaremos en nuestra aplicacion
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          name: 'vendors', //Como se llamara
+          filename: 'assets/vendor.[chunkhash].js', // Nombre singular con un hash
+          reuseExistingChunk: true, // Reutilizamos si existe
+          enforce: true,
+          priority: 10,
+        },
+      },
+    },
   },
 };
