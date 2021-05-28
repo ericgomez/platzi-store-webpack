@@ -4,10 +4,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.js'], // En este caso agregamos dos puntos de entrada para este caso solo para Desarrollo
+  entry: {
+    home: './src/index.js',
+    header: './src/Header/index.js',
+  }, // En este caso agregamos dos puntos de entrada para este caso solo para Desarrollo
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js', // 👈 Cambiamos el nombre
+    chunkFilename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['.tsx', '.js', '.jsx'],
