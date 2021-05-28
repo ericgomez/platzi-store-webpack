@@ -16,6 +16,24 @@
 - Tendremos 2 proyectos que se unificaran.
 - Haremos el Deploy en plataformas distintas.
 
+## Complemento API
+Este proyecto tambien utiliza una Api como complemento dede este Proyecto
+**Platzi Store API con Webpack y Express**
+[platzi-store-webpack-express-api](https://github.com/ericgomez/platzi-store-webpack-express-api)
+
+## Despliegue 📦
+
+_Desarrollo_
+
+```
+npm run start
+```
+_Producción_
+
+```
+npm run build
+```
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
